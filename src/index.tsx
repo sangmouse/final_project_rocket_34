@@ -6,6 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import LayoutRoot from 'components/LayoutRoot';
 import User from 'components/User';
+import LoginPage from 'components/LoginPage';
+import ResetAccount from 'components/ResetAccount';
+import RegisterPage from 'components/RegisterPage';
 
 
 
@@ -25,8 +28,21 @@ const router = createBrowserRouter([
       {
         path: "edit/:userID",
         element: <User />
-      }
+      },
+
     ]
+  },
+  {
+    path: "/login",
+    element: <LoginPage />
+  },
+  {
+    path: "reset-account",
+    element: <ResetAccount />
+  },
+  {
+    path: "register",
+    element: <RegisterPage />
   }
 ])
 
