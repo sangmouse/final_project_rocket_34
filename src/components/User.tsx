@@ -102,40 +102,45 @@ export default function User() {
     }, [userDetail])
 
     return (
-        <div className={styles.user}>
-            <form method="post" onSubmit={handleSubmit}>
-                <div className={styles.user__wrapper}>
-                    <label htmlFor="firstName">First Name</label>
-                    <input type="text" name="firstName" id="firstName" placeholder="Your first name" onChange={onChangeFirstName} value={firstName} />
-                </div>
-                <div className={styles.user__wrapper}>
-                    <label htmlFor="firstName">Last Name</label>
-                    <input type="text" name="lastName" id="lastName" placeholder="Your last name" onChange={onChangeLastName} value={lastName} />
-                </div>
-                <div className={styles.user__wrapper}>
-                    <label htmlFor="address">Address</label>
-                    <input type="text" name="address" id="address" placeholder="Your first name" onChange={onChangeAddress} value={address} />
-                </div>
-                <div className={styles.user__wrapper}>
-                    <label htmlFor="age">Age</label>
-                    <input type="number" name="age" id="age" placeholder="Your age" onChange={onChangeAge} value={age} />
-                </div>
-                <div className={styles.user__wrapper}>
-                    <label htmlFor="department">Department</label>
-                    <select name="department" id="department" onChange={onChangeDepartment} value={department}>
-                        <option value="fpt">FPT Software</option>
-                        <option value="vti">VTI Group</option>
-                        <option value="nashtech">Nashtech</option>
-                        <option value="viettel">Viettel</option>
-                    </select>
-                </div>
-                <p style={{
-                    textAlign: "center",
-                    margin: "40px 0 50px 0"
-                }}>
-                    <button className={styles.user__btn}>{params.userID ? "Edit user" : "Create new user"}</button>
-                </p>
-            </form>
+        <div style={{
+            background: "#e9e9e9",
+            padding: "40px 0"
+        }}>
+            <div className={styles.user}>
+                <form method="post" onSubmit={handleSubmit}>
+                    <div className={styles.user__wrapper}>
+                        <label htmlFor="firstName">First Name</label>
+                        <input type="text" name="firstName" id="firstName" placeholder="Your first name" onChange={onChangeFirstName} value={firstName} />
+                    </div>
+                    <div className={styles.user__wrapper}>
+                        <label htmlFor="firstName">Last Name</label>
+                        <input type="text" name="lastName" id="lastName" placeholder="Your last name" onChange={onChangeLastName} value={lastName} />
+                    </div>
+                    <div className={styles.user__wrapper}>
+                        <label htmlFor="address">Address</label>
+                        <input type="text" name="address" id="address" placeholder="Your first name" onChange={onChangeAddress} value={address} />
+                    </div>
+                    <div className={styles.user__wrapper}>
+                        <label htmlFor="age">Age</label>
+                        <input type="number" name="age" id="age" placeholder="Your age" onChange={onChangeAge} value={age} />
+                    </div>
+                    <div className={styles.user__wrapper}>
+                        <label htmlFor="department">Department</label>
+                        <select name="department" id="department" onChange={onChangeDepartment} value={department}>
+                            <option value="fpt">FPT Software</option>
+                            <option value="vti">VTI Group</option>
+                            <option value="nashtech">Nashtech</option>
+                            <option value="viettel">Viettel</option>
+                        </select>
+                    </div>
+                    <p style={{
+                        textAlign: "center",
+                        margin: "40px 0 50px 0"
+                    }}>
+                        <button className={styles.user__btn}>{params.userID ? "Edit user" : "Create new user"}</button>
+                    </p>
+                </form>
+            </div>
         </div>
     )
 }
