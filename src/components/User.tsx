@@ -21,6 +21,7 @@ export default function User() {
     const [age, setAge] = useState<number>()
     const [department, setDepartment] = useState<string>("fpt")
     const [userDetail, setUserDetail] = useState<UserDetail>()
+    const [error, setError] = useState<string>("")
     const navigate = useNavigate()
     const params = useParams()
 
@@ -34,55 +35,65 @@ export default function User() {
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        if (!params.userID) {
-            axios({
-                method: "post",
-                url: "http://localhost:3000/users",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                data: {
-                    firstName: firstName,
-                    lastName: lastName,
-                    address: address,
-                    age: age,
-                    department: department
-                }
-            })
-            return navigate("/")
+        if (!firstName?.length || !lastName?.length || !address?.length || !age || !department.length) {
+            setError("Please full fill data form!")
         } else {
-            axios({
-                method: "PUT",
-                url: `http://localhost:3000/users/${params.userID}`,
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                data: {
-                    firstName: firstName,
-                    lastName: lastName,
-                    address: address,
-                    age: age,
-                    department: department
-                }
-            })
-            return navigate("/")
+            if (!params.userID) {
+                axios({
+                    method: "post",
+                    url: "http://localhost:3000/users",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    data: {
+                        firstName: firstName,
+                        lastName: lastName,
+                        address: address,
+                        age: age,
+                        department: department
+                    }
+                })
+                return navigate("/")
+            } else {
+                axios({
+                    method: "PUT",
+                    url: `http://localhost:3000/users/${params.userID}`,
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    data: {
+                        firstName: firstName,
+                        lastName: lastName,
+                        address: address,
+                        age: age,
+                        department: department
+                    }
+                })
+                return navigate("/")
+            }
         }
+
     }
 
     function onChangeFirstName(event: React.ChangeEvent<HTMLInputElement>) {
         setFirstName(event.target.value)
+        setError("")
     }
     function onChangeLastName(event: React.ChangeEvent<HTMLInputElement>) {
         setLastName(event.target.value)
+        setError("")
     }
     function onChangeAddress(event: React.ChangeEvent<HTMLInputElement>) {
         setAddress(event.target.value)
+        setError("")
     }
     function onChangeAge(event: React.ChangeEvent<HTMLInputElement>) {
         setAge(+event.target.value)
+        setError("")
     }
     function onChangeDepartment(event: React.ChangeEvent<HTMLSelectElement>) {
         setDepartment(event.target.value)
+        setError("")
     }
 
     useEffect(function () {
@@ -133,6 +144,9 @@ export default function User() {
                             <option value="viettel">Viettel</option>
                         </select>
                     </div>
+                    <p style={{
+                        color: "red"
+                    }}>{error}</p>
                     <p style={{
                         textAlign: "center",
                         margin: "40px 0 50px 0"
